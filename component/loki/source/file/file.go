@@ -14,6 +14,7 @@ import (
 	"github.com/grafana/agent/component/common/loki"
 	"github.com/grafana/agent/component/common/loki/positions"
 	"github.com/grafana/agent/component/discovery"
+	"github.com/grafana/dskit/backoff"
 	"github.com/prometheus/common/model"
 )
 
@@ -39,6 +40,7 @@ const (
 type Arguments struct {
 	Targets   []discovery.Target  `river:"targets,attr"`
 	ForwardTo []loki.LogsReceiver `river:"forward_to,attr"`
+	Backoff   backoff.Config      `yaml:"backoff_config"`
 }
 
 var (
